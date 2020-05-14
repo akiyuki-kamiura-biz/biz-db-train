@@ -58,6 +58,7 @@ order by member_name ASC;
         val results = """
 select * 
 from MEMBER
+where member_id=1;
         """.fetch()
 
         // Assert:
