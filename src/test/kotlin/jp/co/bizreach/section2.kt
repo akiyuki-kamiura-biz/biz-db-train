@@ -98,6 +98,14 @@ order by case when (MEMBER.BIRTHDATE is null) then 1 else 0 end asc,
         val results = """
 select MEMBER.*
 from MEMBER
+where MEMBER.MEMBER_ID in (
+  select ms.id
+  from (
+    select MEMBER_SECURITY.MEMBER_ID id, MEMBER_SECURITY.REMINDER_QUESTION
+    from MEMBER_SECURITY
+    where MEMBER_SECURITY.REMINDER_QUESTION like '%2%'
+  ) ms
+);
         """.fetch()
 
         // Assert:
